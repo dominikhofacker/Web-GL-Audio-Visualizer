@@ -301,8 +301,8 @@ function initBinCanvas () {
 
 		// How far you can orbit horizontally, upper and lower limits.
 		// If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
-		controls.minAzimuthAngle = - 0.3 * Math.PI; // radians
-		controls.maxAzimuthAngle = 0.3 * Math.PI; // radians
+		controls.minAzimuthAngle = - 0.2 * Math.PI; // radians
+		controls.maxAzimuthAngle = 0.2 * Math.PI; // radians
 		controls.enabled = true;
 	});
 
