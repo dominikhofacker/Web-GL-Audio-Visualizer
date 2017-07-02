@@ -51,7 +51,7 @@ $(function () {
                 $('.inputfile + label, .button').removeClass('fadeInUp');
          });
 		$('#loading_wrapper').css("top", ($(window).height() / 2 - LOADING_WRAPPER_HEIGHT));
-		
+			
 		//handle different types navigator objects of different browsers
 		navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
 	            navigator.mozGetUserMedia || navigator.msGetUserMedia;
@@ -290,6 +290,8 @@ function onWindowResize() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	
 	$('#loading_wrapper').css("top", ($(window).height() / 2 - LOADING_WRAPPER_HEIGHT));
+	
+	console.log("Window.width" + $(window).width());
 
 }
 

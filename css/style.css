@@ -171,6 +171,7 @@ label {
 	background-size: contain;
 	opacity: .75;
 	z-index: 9999999;
+	cursor: pointer;
 }
 
 .label {
@@ -206,6 +207,8 @@ label {
 	text-align: center;
 	position: absolute;
 	bottom: 20px;
+	line-height: 1.5em;
+	width: 60%
 }
 
 #loading_screen {
@@ -306,4 +309,20 @@ html, body {
   width:  100%;
   height: 100%;
   margin: 0px;
+}
+
+@media screen and (max-width : 768px)  {
+	#logo {
+		width: 60px;
+		height: 50px;
+	}
+	#viewer_discretion {
+		font-size: 8px;
+	}
+}
+
+@media screen and (min-width : 1018px)  {
+	#viewer_discretion {
+		width: 80%;
+	}
 }
