@@ -25,6 +25,7 @@ var pivot;
 var cube_mesh;
 var scene;
 var camera;
+var controls;
 var fileChosen = false;
 var RADIUS = 2;
 var mouseX = 0, mouseY = 0;
@@ -139,7 +140,7 @@ function playSample() {
 
 function initBinCanvas () {
 
-	//TODO
+	//SCENE#######################################################################
 	scene = new THREE.Scene();
 	scene.background = new THREE.Color( 0x00000);
 	camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
@@ -147,6 +148,13 @@ function initBinCanvas () {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.setPixelRatio( window.devicePixelRatio );
 	document.body.appendChild(renderer.domElement);
+	
+	controls = new THREE.OrbitControls( camera, renderer.domElement );
+	controls.addEventListener( 'change', render ); // remove when using animation loop
+	// enable animation loop when using damping or autorotation
+	//controls.enableDamping = true;
+	//controls.dampingFactor = 0.25;
+	controls.enableZoom = false;
 
 	var geometry = new THREE.BoxGeometry(560, 560, 100000, 15, 55, 100);
 	
@@ -343,10 +351,18 @@ function updateVisualization () {
 	//console.log("Camer pos x: " + camera.position.x);
 	camera.position.y += ( - mouseY - camera.position.y) * .05;
 	camera.lookAt( scene.position );
-	renderer.render(scene, camera);
+	
+	render();
+	//renderer.render(scene, camera);
 	
 
 	rafID = window.requestAnimationFrame(updateVisualization);
+}
+
+function render() {
+	
+	renderer.render( scene, camera );
+	
 }
 
 function smoothenArr(array) 
