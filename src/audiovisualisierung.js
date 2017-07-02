@@ -46,10 +46,10 @@ if (!window.requestAnimationFrame)
 
 $(function () {
 	
-		$(".inputfile + label, .button").addClass("animated fadeInUp");
+		/*$(".inputfile + label, .button").addClass("animated fadeInUp");
 		$('.inputfile + label, .button').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                 $('.inputfile + label, .button').removeClass('fadeInUp');
-         });
+         });*/
 		$('#loading_wrapper').css("top", ($(window).height() / 2 - LOADING_WRAPPER_HEIGHT));
 			
 		//handle different types navigator objects of different browsers
