@@ -151,24 +151,9 @@ function initBinCanvas () {
 	document.body.appendChild(renderer.domElement);
 	
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
-	controls.addEventListener( 'change', render ); // remove when using animation loop
-	// enable animation loop when using damping or autorotation
-	controls.enableDamping = true;
-	controls.dampingFactor = 0.5;
-	controls.enableZoom = false;
+	
 	controls.enabled = false;
-	controls.noPan = true;
-	
-	// How far you can orbit vertically, upper and lower limits.
-	// Range is 0 to Math.PI radians.
-	controls.minPolarAngle = 0.25 * Math.PI; // radians
-	controls.maxPolarAngle = 0.75 * Math.PI; // radians
-
-	// How far you can orbit horizontally, upper and lower limits.
-	// If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
-	controls.minAzimuthAngle = - Infinity; // radians
-	controls.maxAzimuthAngle = Infinity; // radians
-	
+		
 	var geometry = new THREE.BoxGeometry(560, 560, 100000, 15, 55, 100);
 	
 	var cubeMat = new THREE.MeshBasicMaterial({color: '#4200ff', wireframe: true});
@@ -303,6 +288,21 @@ function initBinCanvas () {
 	window.addEventListener('touchstart', function() {
 	  // the user touched the screen!
 		isTouchDevice = true;
+		controls.addEventListener( 'change', render ); // remove when using animation loop
+		// enable animation loop when using damping or autorotation
+		controls.enableDamping = true;
+		controls.dampingFactor = 0.5;
+		controls.enableZoom = false;
+		controls.noPan = true;
+		// How far you can orbit vertically, upper and lower limits.
+		// Range is 0 to Math.PI radians.
+		controls.minPolarAngle = 0.4 * Math.PI; // radians
+		controls.maxPolarAngle = 0.6 * Math.PI; // radians
+
+		// How far you can orbit horizontally, upper and lower limits.
+		// If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
+		controls.minAzimuthAngle = - 0.4 * Math.PI; // radians
+		controls.maxAzimuthAngle = 0.6 * Math.PI; // radians
 		controls.enabled = true;
 	});
 
