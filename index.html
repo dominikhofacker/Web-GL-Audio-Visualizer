@@ -1,1 +1,51 @@
-Web GL Audio Visualizer
+<!DOCTYPE html>
+<!--
+Audiovisualization using the html canvas element.
+Please note: this is an offline-only version. For this version to be used online you need an XMLHttpRequest to load the music file!
+©2017, Dominik Hofacker
+https://www.behance.net/dominikhofacker
+Please consider supporting this project on behance:
+https://www.behance.net/gallery/49260123/Web-Audio-Visualization
+-->
+   <html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="IE=8" http-equiv="X-UA-Compatible">
+        <title>############################################</title>
+        <meta name="viewport" content="width=device-width">
+        <!-- Das favicon.ico und das apple-touch-icon.png in das root Verzeichnis -->
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="src/three.min.js"></script>
+        <script src="src/OBJLoader.js"></script>
+        <script src="src/bufferloader.js"></script>
+        <script src="src/id3-minimized.js"></script>
+        <script src="src/audiovisualisierung.js"></script>
+    </head>
+    <body>
+       	<div id="button_wrapper">
+       		<input type="file" name="file" id="file" class="inputfile" onchange="handleFiles(this.files)"/>
+			<label for="file">Choose file</label>
+      		<div class="button" id="sample" onclick="playSample()">Play sample file</div>
+       	</div>		 
+       	<!--<div class="label">This music visualizer may be harmful to viewers who are prone to epilepsy. Viewer discretion is advised.</div>-->
+       	<div id="loading_screen">
+       		<div id="loading_wrapper">
+				<div class="sk-folding-cube">
+				  <div class="sk-cube1 sk-cube"></div>
+				  <div class="sk-cube2 sk-cube"></div>
+				  <div class="sk-cube4 sk-cube"></div>
+				  <div class="sk-cube3 sk-cube"></div>
+				</div>
+				<div class="label">Loading...</div>
+			</div>
+       	</div>
+       	<div id="viewer_discretion"></div>
+		<a href="https://www.behance.net/dominikhofacker"><div id="logo"></div></a>
+    </body>
+</html>
