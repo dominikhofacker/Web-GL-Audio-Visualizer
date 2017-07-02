@@ -30,7 +30,7 @@ var RADIUS = 2;
 var mouseX = 0, mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
-var loaded, total;
+var loadedVar = 0, totalVar = 0;
 
 const HIGHLIGHT_COLORS = [0x4200ff, 0x00ffff, 0xff0000, 0xff00ff];
 const LOADING_WRAPPER_HEIGHT = 100;
@@ -178,15 +178,16 @@ function initBinCanvas () {
 	var manager = new THREE.LoadingManager();
 		manager.onProgress = function ( item, loaded, total ) {
 			console.log( item, loaded, total ); //loaded 1 total 3
-			this.loaded = loaded;
-			this.total = total;
+			loadedVar = loaded;
+			totalVar = total;
 	};
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
 			var percentComplete = xhr.loaded / xhr.total * 100;
 			console.log( Math.round(percentComplete, 2) + '% loaded' );
 			$(".label").html(Math.round(percentComplete, 2) + '% loaded');
-			if (percentComplete === 100 && loaded === total) {
+			//console.log("LOADED VAR:" + loadedVar + "\n TOTAL VAR:" + totalVar);
+			if (percentComplete === 100 && loadedVar === 2) {
 				$(".inputfile + label, .button").addClass("animated fadeInUp");
 				$('.inputfile + label, .button').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
 						$('.inputfile + label, .button').removeClass('fadeInUp');
