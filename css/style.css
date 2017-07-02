@@ -135,6 +135,7 @@ input {
     -moz-osx-font-smoothing: grayscale;
 	
 	animation-delay: 1.5s;
+	visibility: hidden; 
 }
 
 .inputfile + label {

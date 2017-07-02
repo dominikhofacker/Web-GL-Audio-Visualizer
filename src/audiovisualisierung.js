@@ -50,6 +50,7 @@ $(function () {
 		$('.inputfile + label, .button').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                 $('.inputfile + label, .button').removeClass('fadeInUp');
          });*/
+		
 		$('#loading_wrapper').css("top", ($(window).height() / 2 - LOADING_WRAPPER_HEIGHT));
 			
 		//handle different types navigator objects of different browsers
@@ -188,6 +189,7 @@ function initBinCanvas () {
 			$(".label").html(Math.round(percentComplete, 2) + '% loaded');
 			//console.log("LOADED VAR:" + loadedVar + "\n TOTAL VAR:" + totalVar);
 			if (percentComplete === 100 && loadedVar === 2) {
+				$(".inputfile + label, .button").css("visibility", "visible");
 				$(".inputfile + label, .button").addClass("animated fadeInUp");
 				$('.inputfile + label, .button').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
 						$('.inputfile + label, .button').removeClass('fadeInUp');
