@@ -32,6 +32,7 @@ var mouseX = 0, mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 var loadedVar = 0, totalVar = 0;
+var isTouchDevice = false;
 
 const HIGHLIGHT_COLORS = [0x4200ff, 0x00ffff, 0xff0000, 0xff00ff];
 const LOADING_WRAPPER_HEIGHT = 100;
@@ -155,7 +156,9 @@ function initBinCanvas () {
 	//controls.enableDamping = true;
 	//controls.dampingFactor = 0.25;
 	controls.enableZoom = false;
-
+	controls.enabled = false;
+	controls.noPan = true;
+	
 	var geometry = new THREE.BoxGeometry(560, 560, 100000, 15, 55, 100);
 	
 	var cubeMat = new THREE.MeshBasicMaterial({color: '#4200ff', wireframe: true});
@@ -287,6 +290,11 @@ function initBinCanvas () {
 	
 	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 	window.addEventListener( 'resize', onWindowResize, false );
+	window.addEventListener('touchstart', function() {
+	  // the user touched the screen!
+		isTouchDevice = true;
+		controls.enabled = true;
+	});
 
 }
 
@@ -347,11 +355,12 @@ function updateVisualization () {
 		
 		drawBars(array);
 	}
-	camera.position.x += ( mouseX - camera.position.x) * .05;
-	//console.log("Camer pos x: " + camera.position.x);
-	camera.position.y += ( - mouseY - camera.position.y) * .05;
-	camera.lookAt( scene.position );
-	
+	if (!isTouchDevice) {
+		camera.position.x += ( mouseX - camera.position.x) * .05;
+		//console.log("Camer pos x: " + camera.position.x);
+		camera.position.y += ( - mouseY - camera.position.y) * .05;
+		camera.lookAt( scene.position );
+	}
 	render();
 	//renderer.render(scene, camera);
 	
@@ -360,7 +369,6 @@ function updateVisualization () {
 }
 
 function render() {
-	
 	renderer.render( scene, camera );
 	
 }
