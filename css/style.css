@@ -327,3 +327,15 @@ html, body {
 		width: 80%;
 	}
 }
+
+@media screen and (max-height : 680px)  {
+	#button_wrapper {
+		bottom: 110px;
+	}
+}
+
+@media screen and (max-height : 560px)  {
+	#button_wrapper {
+		bottom: 90px;
+	}
+}

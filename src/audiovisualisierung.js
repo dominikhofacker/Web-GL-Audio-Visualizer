@@ -293,7 +293,8 @@ function onWindowResize() {
 	
 	$('#loading_wrapper').css("top", ($(window).height() / 2 - LOADING_WRAPPER_HEIGHT));
 	
-	console.log("Window.width" + $(window).width());
+	console.log("Window.height" + $(window).height());
+	
 
 }
 
