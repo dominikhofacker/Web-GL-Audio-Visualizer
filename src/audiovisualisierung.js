@@ -154,10 +154,20 @@ function initBinCanvas () {
 	controls.addEventListener( 'change', render ); // remove when using animation loop
 	// enable animation loop when using damping or autorotation
 	controls.enableDamping = true;
-	controls.dampingFactor = 0.25;
+	controls.dampingFactor = 0.5;
 	controls.enableZoom = false;
 	controls.enabled = false;
 	controls.noPan = true;
+	
+	// How far you can orbit vertically, upper and lower limits.
+	// Range is 0 to Math.PI radians.
+	controls.minPolarAngle = 0; // radians
+	controls.maxPolarAngle = Math.PI; // radians
+
+	// How far you can orbit horizontally, upper and lower limits.
+	// If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
+	controls.minAzimuthAngle = - Infinity; // radians
+	controls.maxAzimuthAngle = Infinity; // radians
 	
 	var geometry = new THREE.BoxGeometry(560, 560, 100000, 15, 55, 100);
 	
