@@ -153,8 +153,8 @@ function initBinCanvas () {
 	controls = new THREE.OrbitControls( camera, renderer.domElement );
 	controls.addEventListener( 'change', render ); // remove when using animation loop
 	// enable animation loop when using damping or autorotation
-	//controls.enableDamping = true;
-	//controls.dampingFactor = 0.25;
+	controls.enableDamping = true;
+	controls.dampingFactor = 0.25;
 	controls.enableZoom = false;
 	controls.enabled = false;
 	controls.noPan = true;
@@ -366,6 +366,7 @@ function updateVisualization () {
 	
 
 	rafID = window.requestAnimationFrame(updateVisualization);
+	controls.update();
 }
 
 function render() {
