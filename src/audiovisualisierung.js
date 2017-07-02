@@ -161,8 +161,8 @@ function initBinCanvas () {
 	
 	// How far you can orbit vertically, upper and lower limits.
 	// Range is 0 to Math.PI radians.
-	controls.minPolarAngle = 0; // radians
-	controls.maxPolarAngle = Math.PI; // radians
+	controls.minPolarAngle = 0.25 * Math.PI; // radians
+	controls.maxPolarAngle = 0.75 * Math.PI; // radians
 
 	// How far you can orbit horizontally, upper and lower limits.
 	// If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
