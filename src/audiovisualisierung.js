@@ -104,6 +104,7 @@ function handleFiles(files) {
 	camera.position.y = 0;
 	
 	$(".inputfile + label, .button").addClass("animated fadeOutDown");
+	$("#viewer_discretion").html("Copyright 2017, Dominik Hofacker. All Rights Reserved.");
 }
 
 function playSample() {
