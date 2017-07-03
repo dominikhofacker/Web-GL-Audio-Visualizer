@@ -115,6 +115,12 @@ function playSample() {
     setupAudioNodes();
 	
 	var request = new XMLHttpRequest();
+	
+	request.addEventListener("progress", updateProgress);
+	request.addEventListener("load", transferComplete);
+	request.addEventListener("error", transferFailed);
+	request.addEventListener("abort", transferCanceled);
+	
 	request.open('GET', 'src/sample.mp3', true);
 	request.responseType = 'arraybuffer';
 
@@ -320,7 +326,7 @@ function onWindowResize() {
 	
 	$('#loading_wrapper').css("top", ($(window).height() / 2 - LOADING_WRAPPER_HEIGHT));
 	
-	console.log("Window.height" + $(window).height());
+	console.log("Window.width" + $(window).width());
 	
 
 }
@@ -395,6 +401,31 @@ function smoothenArr(array)
 	return smooth_array;
 }
 
+// progress on transfers from the server to the client (downloads)
+function updateProgress (oEvent) {
+  if (oEvent.lengthComputable) {
+    var percentComplete = oEvent.loaded / oEvent.total;
+    $("#viewer_discretion").css("font-size", "13px");
+	$("#viewer_discretion").html("Loading music file... " + percentComplete);
+  } else {
+    // Unable to compute progress information since the total size is unknown
+	  console.log("Unable to compute progress info.");
+  }
+}
+
+function transferComplete(evt) {
+  console.log("The transfer is complete.");
+}
+
+function transferFailed(evt) {
+  console.log("An error occurred while transferring the file.");
+}
+
+function transferCanceled(evt) {
+  console.log("The transfer has been canceled by the user.");
+}
+
+//var counterVar = 0; //decrease flashing frequency
 function drawBars (array) {
 
 	//just show bins with a value over the treshold
@@ -435,6 +466,8 @@ function drawBars (array) {
 	}
 	
 	if (bass > 230) {
+		//counterVar++;
+		//if (counterVar % 3 === 0) 
 		cube_mesh.material.color.setHex( HIGHLIGHT_COLORS[Math.floor(Math.random() * HIGHLIGHT_COLORS.length)] );
 		cube_mesh.position.z += 10;
 		//cube_mesh.rotation.z +=  .01;

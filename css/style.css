@@ -312,6 +312,20 @@ html, body {
   margin: 0px;
 }
 
+@media screen and (max-width : 375px)  {
+	
+	#button_wrapper {
+		width: 330px;
+		height: 45px;
+	}
+	
+	.inputfile + label, .button {
+		width: 140px;
+		height: 45px;
+		font-size: 10px;
+	}
+}
+
 @media screen and (max-width : 768px)  {
 	#logo {
 		width: 60px;
