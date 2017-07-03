@@ -406,7 +406,7 @@ function updateProgress (oEvent) {
   if (oEvent.lengthComputable) {
     var percentComplete = oEvent.loaded / oEvent.total;
     $("#viewer_discretion").css("font-size", "13px");
-	$("#viewer_discretion").html("Loading music file... " + percentComplete);
+	$("#viewer_discretion").html("Loading music file... " + Math.floor(percentComplete * 100) + "%");
   } else {
     // Unable to compute progress information since the total size is unknown
 	  console.log("Unable to compute progress info.");
