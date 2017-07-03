@@ -123,7 +123,7 @@ function playSample() {
 	var request = new XMLHttpRequest();
 	
 	request.addEventListener("progress", updateProgress);
-	request.addEventListener("load", transferComplete);
+	request.addEventListener("load", transferComplete2);
 	request.addEventListener("error", transferFailed);
 	request.addEventListener("abort", transferCanceled);
 	
@@ -411,8 +411,8 @@ function smoothenArr(array)
 function updateProgress (oEvent) {
   if (oEvent.lengthComputable) {
     var percentComplete = oEvent.loaded / oEvent.total;
-    $("#viewer_discretion").css("font-size", "13px");
 	$("#viewer_discretion").html("Loading music file... " + Math.floor(percentComplete * 100) + "%");
+	$("#viewer_discretion").addClass("animated infinite flash");
   } else {
     // Unable to compute progress information since the total size is unknown
 	  console.log("Unable to compute progress info.");
@@ -420,9 +420,15 @@ function updateProgress (oEvent) {
 }
 
 function transferComplete(evt) {
-  console.log("The transfer is complete.");
-  $("#viewer_discretion").css("font-size", "11px");
-  $("#viewer_discretion").html("Copyright 2017, Dominik Hofacker. All Rights Reserved.");
+  	console.log("The transfer is complete.");
+	$("#viewer_discretion").removeClass("animated infinite flash");
+  	$("#viewer_discretion").html("Copyright 2017, Dominik Hofacker. All Rights Reserved.");
+}
+
+function transferComplete2(evt) {
+  	console.log("The transfer is complete.");
+	$("#viewer_discretion").removeClass("animated infinite flash");
+  	$("#viewer_discretion").html("You are listening to Jordan Schor - Cosmic (feat. Nathan Brumley).");
 }
 
 function transferFailed(evt) {
@@ -431,7 +437,7 @@ function transferFailed(evt) {
 }
 
 function transferCanceled(evt) {
-  console.log("The transfer has been canceled by the user.");
+  	console.log("The transfer has been canceled by the user.");
 	$("#viewer_discretion").html("Loading has been canceled by the user.");
 }
 
