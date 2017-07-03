@@ -85,6 +85,12 @@ function handleFiles(files) {
      var url = URL.createObjectURL(files[0]); 
 	
 	var request = new XMLHttpRequest();
+	
+	request.addEventListener("progress", updateProgress);
+	request.addEventListener("load", transferComplete);
+	request.addEventListener("error", transferFailed);
+	request.addEventListener("abort", transferCanceled);
+	
 	request.open('GET', url, true);
 	request.responseType = 'arraybuffer';
 
