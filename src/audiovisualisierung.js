@@ -37,6 +37,11 @@ var isTouchDevice = false;
 const HIGHLIGHT_COLORS = [0x4200ff, 0x00ffff, 0xff0000, 0xff00ff];
 const LOADING_WRAPPER_HEIGHT = 100;
 
+const SAMPLE_URLS = ['src/sample.mp3', 'src/sample2.mp3'];
+const SAMPLE_SUBTEXTS = ["You are listening to Jordan Schor - Cosmic (feat. Nathan Brumley).",
+						 "You are listening to Jo Cohen & Sex Whales - We Are."];
+var sampleURLIndex;
+
 //handle different prefix of the audio context
 var AudioContext = AudioContext || webkitAudioContext;
 //create the context.
@@ -127,7 +132,10 @@ function playSample() {
 	request.addEventListener("error", transferFailed);
 	request.addEventListener("abort", transferCanceled);
 	
-	request.open('GET', 'src/sample.mp3', true);
+	sampleURLIndex = getRandomInt(0,1);
+	console.log("SAMPLE URL INDEX: " + sampleURLIndex);
+	
+	request.open('GET', SAMPLE_URLS[sampleURLIndex], true);
 	request.responseType = 'arraybuffer';
 
  	// When loaded decode the data
@@ -148,7 +156,11 @@ function playSample() {
 	camera.position.y = 0;
 	
 	$(".inputfile + label, .button").addClass("animated fadeOutDown");
-	$("#viewer_discretion").html("You are listening to Jordan Schor - Cosmic (feat. Nathan Brumley).");
+	$("#viewer_discretion").html(SAMPLE_SUBTEXTS[sampleURLIndex]);
+}
+
+function getRandomInt(min, max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function initBinCanvas () {
@@ -428,7 +440,7 @@ function transferComplete(evt) {
 function transferComplete2(evt) {
   	console.log("The transfer is complete.");
 	$("#viewer_discretion").removeClass("animated infinite flash");
-  	$("#viewer_discretion").html("You are listening to Jordan Schor - Cosmic (feat. Nathan Brumley).");
+  	$("#viewer_discretion").html(SAMPLE_SUBTEXTS[sampleURLIndex]);
 }
 
 function transferFailed(evt) {
