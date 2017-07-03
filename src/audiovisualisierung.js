@@ -415,14 +415,18 @@ function updateProgress (oEvent) {
 
 function transferComplete(evt) {
   console.log("The transfer is complete.");
+  $("#viewer_discretion").css("font-size", "11px");
+  $("#viewer_discretion").html("Copyright 2017, Dominik Hofacker. All Rights Reserved.");
 }
 
 function transferFailed(evt) {
-  console.log("An error occurred while transferring the file.");
+  	console.log("An error occurred while transferring the file.");
+	$("#viewer_discretion").html("An error occurred while loading the file.");
 }
 
 function transferCanceled(evt) {
   console.log("The transfer has been canceled by the user.");
+	$("#viewer_discretion").html("Loading has been canceled by the user.");
 }
 
 //var counterVar = 0; //decrease flashing frequency
