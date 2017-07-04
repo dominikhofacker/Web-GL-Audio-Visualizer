@@ -37,9 +37,9 @@ var isTouchDevice = false;
 const HIGHLIGHT_COLORS = [0x4200ff, 0x00ffff, 0xff0000, 0xff00ff];
 const LOADING_WRAPPER_HEIGHT = 100;
 
-const SAMPLE_URLS = ['src/sample.mp3', 'src/sample2.mp3'];
-const SAMPLE_SUBTEXTS = ["You are listening to Jordan Schor - Cosmic (feat. Nathan Brumley).",
-						 "You are listening to Jo Cohen & Sex Whales - We Are."];
+const SAMPLE_URLS = ['src/sample2.mp3', 'src/sample.mp3'];
+const SAMPLE_SUBTEXTS = ["You are listening to Jo Cohen & Sex Whales - We Are.",
+						 "You are listening to Jordan Schor - Cosmic (feat. Nathan Brumley)."];
 var sampleURLIndex;
 
 //handle different prefix of the audio context
