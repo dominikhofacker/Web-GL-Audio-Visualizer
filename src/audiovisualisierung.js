@@ -341,8 +341,8 @@ function onDocumentTouchStart( event ) {
 	
 	if ( event.touches.length > 1 ) {
 		event.preventDefault();
-		mouseX = (event.touches[ 0 ].pageX - windowHalfX);
-		mouseY = (event.touches[ 0 ].pageY - windowHalfY);
+		mouseX = (event.touches[ 0 ].pageX - windowHalfX) / 3;
+		mouseY = (event.touches[ 0 ].pageY - windowHalfY) / 3;
 	}
 	
 }
@@ -351,8 +351,8 @@ function onDocumentTouchMove( event ) {
 	
 	if ( event.touches.length == 1 ) {
 		event.preventDefault();
-		mouseX = (event.touches[ 0 ].pageX - windowHalfX);
-		mouseY = (event.touches[ 0 ].pageY - windowHalfY);
+		mouseX = (event.touches[ 0 ].pageX - windowHalfX) / 3;
+		mouseY = (event.touches[ 0 ].pageY - windowHalfY) / 3;
 	}
 	
 }
