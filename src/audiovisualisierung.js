@@ -32,7 +32,6 @@ var mouseX = 0, mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 var loadedVar = 0, totalVar = 0;
-var isTouchDevice = false;
 
 const HIGHLIGHT_COLORS = [0x4200ff, 0x00ffff, 0xff0000, 0xff00ff];
 const LOADING_WRAPPER_HEIGHT = 100;
@@ -308,27 +307,9 @@ function initBinCanvas () {
 	scene.add( directionalLight );
 	
 	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-	window.addEventListener( 'resize', onWindowResize, false );
-	window.addEventListener('touchstart', function() {
-	  // the user touched the screen!
-		isTouchDevice = true;
-		controls.addEventListener( 'change', render ); // remove when using animation loop
-		// enable animation loop when using damping or autorotation
-		controls.enableDamping = true;
-		controls.dampingFactor = 0.5;
-		controls.enableZoom = false;
-		controls.noPan = true;
-		// How far you can orbit vertically, upper and lower limits.
-		// Range is 0 to Math.PI radians.
-		controls.minPolarAngle = 0.35 * Math.PI; // radians
-		controls.maxPolarAngle = 0.65 * Math.PI; // radians
-
-		// How far you can orbit horizontally, upper and lower limits.
-		// If set, must be a sub-interval of the interval [ - Math.PI, Math.PI ].
-		controls.minAzimuthAngle = - Math.PI / 5.9; // radians
-		controls.maxAzimuthAngle = Math.PI / 5.9; // radians
-		controls.enabled = true;
-	});
+	document.addEventListener( 'resize', onWindowResize, false );
+	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+	document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
 }
 
@@ -354,6 +335,26 @@ function onDocumentMouseMove( event ) {
 	mouseX = ( event.clientX - windowHalfX ) / 3;
 	mouseY = ( event.clientY - windowHalfY ) / 3;
 
+}
+
+function onDocumentTouchStart( event ) {
+	
+	if ( event.touches.length > 1 ) {
+		event.preventDefault();
+		mouseX = (event.touches[ 0 ].pageX - windowHalfX) / 3;
+		mouseY = (event.touches[ 0 ].pageY - windowHalfY) / 3;
+	}
+	
+}
+
+function onDocumentTouchMove( event ) {
+	
+	if ( event.touches.length == 1 ) {
+		event.preventDefault();
+		mouseX = (event.touches[ 0 ].pageX - windowHalfX) / 3;
+		mouseY = (event.touches[ 0 ].pageY - windowHalfY) / 3;
+	}
+	
 }
 
 var audioBuffer;
@@ -389,12 +390,10 @@ function updateVisualization () {
 		
 		drawBars(array);
 	}
-	if (!isTouchDevice) {
-		camera.position.x += ( mouseX - camera.position.x) * .05;
-		//console.log("Camer pos x: " + camera.position.x);
-		camera.position.y += ( - mouseY - camera.position.y) * .05;
-		camera.lookAt( scene.position );
-	}
+	camera.position.x += ( mouseX - camera.position.x) * .05;
+	//console.log("Camer pos x: " + camera.position.x);
+	camera.position.y += ( - mouseY - camera.position.y) * .05;
+	camera.lookAt( scene.position );
 	render();
 	//renderer.render(scene, camera);
 	
