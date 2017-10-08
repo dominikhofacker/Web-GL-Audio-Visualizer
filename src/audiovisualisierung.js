@@ -307,7 +307,7 @@ function initBinCanvas () {
 	scene.add( directionalLight );
 	
 	document.addEventListener( 'mousemove', onDocumentMouseMove, false );
-	document.addEventListener( 'resize', onWindowResize, false );
+	window.addEventListener( 'resize', onWindowResize, false );
 	document.addEventListener( 'touchstart', onDocumentTouchStart, false );
 	document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
@@ -341,8 +341,8 @@ function onDocumentTouchStart( event ) {
 	
 	if ( event.touches.length > 1 ) {
 		event.preventDefault();
-		mouseX = (event.touches[ 0 ].pageX - windowHalfX) / 2;
-		mouseY = (event.touches[ 0 ].pageY - windowHalfY) / 2;
+		mouseX = (event.touches[ 0 ].pageX - windowHalfX) * 2;
+		mouseY = (event.touches[ 0 ].pageY - windowHalfY) * 2;
 	}
 	
 }
@@ -351,8 +351,8 @@ function onDocumentTouchMove( event ) {
 	
 	if ( event.touches.length == 1 ) {
 		event.preventDefault();
-		mouseX = (event.touches[ 0 ].pageX - windowHalfX) / 2;
-		mouseY = (event.touches[ 0 ].pageY - windowHalfY) / 2;
+		mouseX = (event.touches[ 0 ].pageX - windowHalfX) * 2;
+		mouseY = (event.touches[ 0 ].pageY - windowHalfY) * 2;
 	}
 	
 }
