@@ -212,13 +212,18 @@ function initBinCanvas () {
 			loadedVar = loaded;
 			totalVar = total;
 	};
+	
+	var percentComplete = [];
+	for (var i = 0; i < 3; i++) percentComplete[i] = 0;
 	var onProgress = function ( xhr ) {
 		if ( xhr.lengthComputable ) {
-			var percentComplete = xhr.loaded / xhr.total * 100;
-			console.log( Math.round(percentComplete, 2) + '% loaded' );
-			$(".label").html(Math.round(percentComplete, 2) + '% loaded');
-			//console.log("LOADED VAR:" + loadedVar + "\n TOTAL VAR:" + totalVar);
-			if (percentComplete === 100 && loadedVar === 2) {
+			percentComplete[loadedVar] = (xhr.loaded / xhr.total * 100);
+			//console.log("percentComplete[" + loadedVar + "] = " + (xhr.loaded / xhr.total * 100));
+			//console.log("########totalComplete = " + totalComplete);
+			var totalComplete = (percentComplete[0] + percentComplete[1] + percentComplete[2]) / 3.0;
+			console.log("#############:" + totalComplete);
+			$(".label").html(Math.round(totalComplete, 2) + '% loaded');
+			if (totalComplete === 100 && loadedVar === 2) {
 				$(".inputfile + label, .button").css("visibility", "visible");
 				$(".inputfile + label, .button").addClass("animated fadeInUp");
 				$('.inputfile + label, .button').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
@@ -232,8 +237,10 @@ function initBinCanvas () {
 			} 
 		}
 	};
+	
 	var onError = function ( xhr ) {
 	};
+	
 	var loader3D = new THREE.OBJLoader( manager );
 	// load a resource
 	loader3D.load(
